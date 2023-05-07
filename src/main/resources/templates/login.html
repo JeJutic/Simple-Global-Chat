@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+
+<main>
+  <form th:object="${userInfo}" method="post">
+    <div>
+      <label for="nickname">Enter your nickname: </label>
+      <input id="nickname" type="text"
+             th:field="${userInfo.nickname}">
+    </div>
+    <button type="submit">Login</button>
+  </form>
+</main>
+
+</body>
+</html>

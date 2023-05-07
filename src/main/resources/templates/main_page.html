@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>main</title>
+</head>
+<body>
+<main>
+<!--    <div th:object="${message}">-->
+<!--        <p th:text="${message.text}">INGREDIENT</p>-->
+<!--        <p th:text="${message.author}">INGREDIENT</p>-->
+<!--    </div>-->
+
+    <form th:object="${messageField}" method="post">
+        <div>
+            <label for="messageText">Message text: </label>
+            <input id="messageText" type="text"
+                   th:field="${messageField.text}">
+        </div>
+        <div>
+            <p th:inline="text">Your nick: [[${messageField.author}]]</p>
+        </div>
+        <button type="submit">Send</button>
+    </form>
+
+    <div th:each="message : ${messages}">
+        <p th:text="${message.text}"></p>
+        <b>
+            <p th:text="${message.author}"></p>
+        </b>
+    </div>
+</main>
+
+</body>
+</html>
