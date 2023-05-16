@@ -3,9 +3,11 @@ package com.jejutic.social.ui;
 import com.jejutic.social.domain.GlobalMessageRepositoryDelegator;
 import com.jejutic.social.ui.data_objects.Message;
 import com.jejutic.social.ui.data_objects.UserInfo;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,8 +42,8 @@ public class MainPageController {
     }
 
     @PostMapping
-    public String newMessage(Message message, UserInfo userInfo) {
-        if (userInfo == null || userInfo.getNickname() == null) {
+    public String newMessage(Message message, @Valid UserInfo userInfo, Errors errors) {
+        if (errors.hasErrors()) {
             return "redirect:/login";
         }
         message.setAuthor(userInfo.getNickname());

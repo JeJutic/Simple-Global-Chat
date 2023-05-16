@@ -1,7 +1,9 @@
 package com.jejutic.social.ui;
 
 import com.jejutic.social.ui.data_objects.UserInfo;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -20,7 +22,10 @@ public class LoginPage {
     }
 
     @PostMapping
-    public String login(UserInfo userInfo) {
+    public String login(@Valid UserInfo userInfo, Errors errors) {
+        if (errors.hasErrors()) {
+            return "redirect:/login";
+        }
         return "redirect:/";
     }
 }
