@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.jejutic</groupId>
-	<artifactId>social</artifactId>
+	<artifactId>web_service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>social</name>
 	<description>Demo of social network</description>

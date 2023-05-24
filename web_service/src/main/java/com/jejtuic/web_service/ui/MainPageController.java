@@ -1,8 +1,8 @@
 package com.jejtuic.web_service.ui;
 
+import com.jejtuic.web_service.domain.GlobalMessageRepositoryProcessor;
 import com.jejtuic.web_service.ui.data_objects.Message;
 import com.jejtuic.web_service.ui.data_objects.UserInfo;
-import com.jejtuic.web_service.domain.GlobalMessageRepositoryProcessor;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;

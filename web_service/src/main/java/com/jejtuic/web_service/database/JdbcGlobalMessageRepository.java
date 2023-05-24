@@ -1,6 +1,6 @@
 package com.jejtuic.web_service.database;
 
-import com.jejtuic.web_service.database.data_objects.Message;
+import com.jejtuic.web_service.dto.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -22,23 +22,27 @@ public class JdbcGlobalMessageRepository implements GlobalMessageRepository {
     @Override
     public List<Message> findAll() {
         return jdbcTemplate.query(
-                "select id, text, author from GlobalMessage order by id desc",
+                "select id, text, author, rating from GlobalMessage order by id desc",
                 this::mapRowToMessage);
     }
 
     @Override
     public boolean create(Message message) {
-        String sqlQuery = "insert into GlobalMessage (text, author) values (?, ?)";
-        return jdbcTemplate.update(sqlQuery,
+        String sqlQuery = "insert into GlobalMessage (text, author, rating) values (?, ?, ?)";
+        return jdbcTemplate.update(
+                sqlQuery,
                 message.getText(),
-                message.getAuthor()) > 0;
+                message.getAuthor(),
+                message.getRating()
+        ) > 0;
     }
 
     private Message mapRowToMessage(ResultSet row, int colNum) throws SQLException {
         return new Message(
                 row.getLong("id"),
                 row.getString("text"),
-                row.getString("author")
+                row.getString("author"),
+                row.getObject("rating", Integer.class)
         );
     }
 }

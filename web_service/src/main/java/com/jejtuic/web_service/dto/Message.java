@@ -1,4 +1,4 @@
-package com.jejtuic.web_service.database.data_objects;
+package com.jejtuic.web_service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,4 +10,5 @@ public class Message {
     private Long id;
     private String text;
     private String author;
+    private Integer rating;
 }
