@@ -27,14 +27,14 @@ public class JdbcGlobalMessageRepository implements GlobalMessageRepository {
     }
 
     @Override
-    public boolean create(Message message) {
+    public void create(Message message) {
         String sqlQuery = "insert into GlobalMessage (text, author, rating) values (?, ?, ?)";
-        return jdbcTemplate.update(
+        jdbcTemplate.update(
                 sqlQuery,
                 message.getText(),
                 message.getAuthor(),
                 message.getRating()
-        ) > 0;
+        );
     }
 
     private Message mapRowToMessage(ResultSet row, int colNum) throws SQLException {

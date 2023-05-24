@@ -7,5 +7,5 @@ import java.util.List;
 public interface GlobalMessageRepository {
 
     List<Message> findAll();
-    boolean create(Message message);
+    void create(Message message);
 }

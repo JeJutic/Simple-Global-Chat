@@ -4,10 +4,12 @@ import com.jejtuic.web_service.ui.data_objects.Message;
 import com.jejtuic.web_service.database.GlobalMessageRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -19,6 +21,9 @@ public class GlobalMessageRepositoryProcessorImpl implements GlobalMessageReposi
 
     private final GlobalMessageRepository messageRepository;
     private final RestTemplate restTemplate;
+
+    @Value("${spring.application.microservice_analyzer.url}")
+    private String messageAnalyzerURL;
 
     @Autowired
     public GlobalMessageRepositoryProcessorImpl(GlobalMessageRepository messageRepository, RestTemplate restTemplate) {
@@ -37,8 +42,8 @@ public class GlobalMessageRepositoryProcessorImpl implements GlobalMessageReposi
     }
 
     @Override
-    public boolean create(Message message) {
-        return messageRepository.create(convertMessage(message));
+    public void create(Message message) {
+        messageRepository.create(convertMessage(message));
     }
 
     private void handleProUsers(Message message, int rating) {
@@ -60,15 +65,16 @@ public class GlobalMessageRepositoryProcessorImpl implements GlobalMessageReposi
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         var request = new HttpEntity<>(message, headers);
-        var response = restTemplate.postForEntity(
-                "http://localhost:8090/api/v1/analyze", request, Integer.class);
 
-        if (!response.getStatusCode().isError()) {
+        try {
+            var response = restTemplate.postForEntity(
+                    messageAnalyzerURL + "/analyze", request, Integer.class);
             message.setRating(response.getBody());
-        } else {
-            log.error("Message analyzer microservice is unavailable, response code is: " +
-                    response.getStatusCode().value());
+        } catch (RestClientException e) {
+            log.error("Error in connection with message analyzer microservice: " +
+                    e.getMessage());
         }
+        // FIXME?: still sending if not handled, mb should add broker
     }
 
     private com.jejtuic.web_service.dto.Message convertMessage(Message message) {
