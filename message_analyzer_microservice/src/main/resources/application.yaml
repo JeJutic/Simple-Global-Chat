@@ -1,0 +1,28 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /message_analyzer
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  sql:
+    init:
+      mode: never
+
+  datasource:
+    url: jdbc:h2:file:~/message-analyzer-db
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+
+  sql:
+    init:
+      schema-locations: classpath:schema.sql
+      data-locations: classpath:test/data.sql
