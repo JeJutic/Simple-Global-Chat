@@ -3,5 +3,33 @@ spring:
     microservice_analyzer:
       url: http://localhost:8090/message_analyzer/api/v1/
 
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  sql:
+    init:
+      mode: never
+
+  datasource:
+    url: jdbc:h2:file:~/web-service-db
+
+server:
+  error:
+    include-message: never
+    include-stacktrace: never
+
+#---
+#spring:
+#  config:
+#    activate:
+#      on-profile: dev
+#
+#  sql:
+#    init:
+#      mode: always
+
 #spring.datasource.url=jdbc:h2:file:~/h2-db;DB_CLOSE_ON_EXIT=FALSE;INIT=RUNSCRIPT FROM 'classpath:schema.sql'
 #spring.sql.init.mode=always

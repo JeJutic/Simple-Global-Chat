@@ -69,6 +69,11 @@ public class GlobalMessageRepositoryProcessorImpl implements GlobalMessageReposi
         try {
             var response = restTemplate.postForEntity(
                     messageAnalyzerURL + "/analyze", request, Integer.class);
+            if (response.getStatusCode().isError()) {
+                throw new RestClientException(
+                        "Error status code from message analyzer microservice: " +
+                                response);
+            }
             message.setRating(response.getBody());
         } catch (RestClientException e) {
             log.error("Error in connection with message analyzer microservice: " +
