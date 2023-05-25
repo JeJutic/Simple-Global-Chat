@@ -1,4 +1,4 @@
-package com.jejtuic.web_service.configuration;
+package com.jejutic.web_service.configuration;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;

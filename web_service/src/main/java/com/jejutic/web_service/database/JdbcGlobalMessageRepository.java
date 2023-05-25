@@ -1,6 +1,6 @@
-package com.jejtuic.web_service.database;
+package com.jejutic.web_service.database;
 
-import com.jejtuic.web_service.dto.Message;
+import com.jejutic.web_service.dto.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

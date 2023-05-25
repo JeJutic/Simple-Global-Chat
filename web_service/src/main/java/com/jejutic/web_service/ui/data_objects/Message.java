@@ -1,4 +1,4 @@
-package com.jejtuic.web_service.ui.data_objects;
+package com.jejutic.web_service.ui.data_objects;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

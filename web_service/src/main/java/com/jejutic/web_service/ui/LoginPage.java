@@ -1,6 +1,6 @@
-package com.jejtuic.web_service.ui;
+package com.jejutic.web_service.ui;
 
-import com.jejtuic.web_service.ui.data_objects.UserInfo;
+import com.jejutic.web_service.ui.data_objects.UserInfo;
 
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;

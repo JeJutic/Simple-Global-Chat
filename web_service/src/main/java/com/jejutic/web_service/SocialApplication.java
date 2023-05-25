@@ -1,4 +1,4 @@
-package com.jejtuic.web_service;
+package com.jejutic.web_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

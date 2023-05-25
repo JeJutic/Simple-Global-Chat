@@ -1,0 +1,17 @@
+version: "3"
+services:
+  message-analyzer:
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    build: ./message_analyzer_microservice
+    ports:
+      - "8090:8090"
+
+  web-service:
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    build: ./web_service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - message-analyzer

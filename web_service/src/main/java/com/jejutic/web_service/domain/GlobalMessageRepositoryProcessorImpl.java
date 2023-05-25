@@ -1,7 +1,7 @@
-package com.jejtuic.web_service.domain;
+package com.jejutic.web_service.domain;
 
-import com.jejtuic.web_service.ui.data_objects.Message;
-import com.jejtuic.web_service.database.GlobalMessageRepository;
+import com.jejutic.web_service.ui.data_objects.Message;
+import com.jejutic.web_service.database.GlobalMessageRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,7 +33,7 @@ public class GlobalMessageRepositoryProcessorImpl implements GlobalMessageReposi
 
     @Override
     public List<Message> findAll() {
-        List<com.jejtuic.web_service.dto.Message> databaseList = messageRepository.findAll();
+        List<com.jejutic.web_service.dto.Message> databaseList = messageRepository.findAll();
         List<Message> uiList = new ArrayList<>(databaseList.size());
         for (var message : databaseList) {
             uiList.add(convertMessage(message));
@@ -50,7 +50,7 @@ public class GlobalMessageRepositoryProcessorImpl implements GlobalMessageReposi
         message.setText(message.getText() + "\r\nrating: " + rating);
     }
 
-    private Message convertMessage(com.jejtuic.web_service.dto.Message message) {
+    private Message convertMessage(com.jejutic.web_service.dto.Message message) {
         var result = new Message(
                 message.getText(),
                 message.getAuthor()
@@ -61,7 +61,7 @@ public class GlobalMessageRepositoryProcessorImpl implements GlobalMessageReposi
         return result;
     }
 
-    private void handleProUsers(com.jejtuic.web_service.dto.Message message) {
+    private void handleProUsers(com.jejutic.web_service.dto.Message message) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         var request = new HttpEntity<>(message, headers);
@@ -82,8 +82,8 @@ public class GlobalMessageRepositoryProcessorImpl implements GlobalMessageReposi
         // FIXME?: still sending if not handled, mb should add broker
     }
 
-    private com.jejtuic.web_service.dto.Message convertMessage(Message message) {
-        var result = new com.jejtuic.web_service.dto.Message(
+    private com.jejutic.web_service.dto.Message convertMessage(Message message) {
+        var result = new com.jejutic.web_service.dto.Message(
                 0L,
                 message.getText(),
                 message.getAuthor(),

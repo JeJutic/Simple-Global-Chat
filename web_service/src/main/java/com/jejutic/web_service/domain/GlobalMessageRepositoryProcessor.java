@@ -1,6 +1,6 @@
-package com.jejtuic.web_service.domain;
+package com.jejutic.web_service.domain;
 
-import com.jejtuic.web_service.ui.data_objects.Message;
+import com.jejutic.web_service.ui.data_objects.Message;
 
 import java.util.List;
 

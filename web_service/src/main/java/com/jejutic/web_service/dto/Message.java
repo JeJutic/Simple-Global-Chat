@@ -1,4 +1,4 @@
-package com.jejtuic.web_service.dto;
+package com.jejutic.web_service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
