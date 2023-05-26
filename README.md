@@ -34,7 +34,7 @@ Remember it is a studying project.
 
 ## TODO
 
-* Spring Security for authorisation
-* Integral testing
-* Probably should separate frontend from user and message logic
-* Add message broker
+* Integration tests
+* Separate frontend from user and message logic
+* Add message broke
+* Move from embedded database
