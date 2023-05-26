@@ -36,5 +36,5 @@ Remember it is a studying project.
 
 * Integration tests
 * Separate frontend from user and message logic
-* Add message broke
+* Add message broker
 * Move from embedded database
